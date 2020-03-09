@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function() { // for using script onl
 
     //timer 
 
-    let deadTime = '2020-03-08';
+    let deadTime = '2020-03-09';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -83,15 +83,15 @@ window.addEventListener('DOMContentLoaded', function() { // for using script onl
                 minutes.textContent = '00';
                 seconds.textContent = '00';
             }
-            // added '0' before hours
+            // added '0' before hours, minutes, seconds
             if(t.hours < 10) {
                 hours.textContent = '0' + t.hours;
             }
-            //added '0' before minutes
+            
             if(t.minutes < 10) {
                 minutes.textContent = '0' + t.minutes;
             }
-            //added '0' before seconds
+            
             if(t.seconds < 10) {
                 seconds.textContent = '0' + t.seconds;
             }
@@ -101,3 +101,54 @@ window.addEventListener('DOMContentLoaded', function() { // for using script onl
     setClock('timer', deadTime);
 
 });
+
+// modal window
+
+
+let more = document.querySelector('.more'),
+    overlay = document.querySelector('.overlay'),
+    close = document.querySelector('.popup-close'),
+    description = document.getElementsByClassName('description-btn'); //for 'узнать больше'
+
+more.addEventListener('click', function() {
+
+    overlay.style.display = 'block';
+    this.classList.add('more-splash');
+    document.body.style.overflow = 'hidden';
+
+});
+
+close.addEventListener('click', function() {
+
+    overlay.style.display = 'none';
+    more.classList.remove('more-splash');
+    document.body.style.overflow = '';
+
+});
+
+// modal windows for tabs 
+
+function tabsOn(a) {
+
+    for(let i = a; i < description.length; i++) {
+        
+        // added modal window
+        description[i].addEventListener('click', function() {
+
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+
+        }); 
+
+        //delite class "more-splash" for "Узнать больше"
+        close.addEventListener('click', function() {
+
+            description[i].classList.remove('more-splash');
+            
+        }); 
+
+    }
+}
+
+tabsOn(0);
