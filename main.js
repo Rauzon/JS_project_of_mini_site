@@ -141,7 +141,7 @@ function tabsOn(a) {
 
         }); 
 
-        //delite class "more-splash" for "Узнать больше"
+        //delite class "more-splash" for "Learn more"
         close.addEventListener('click', function() {
 
             description[i].classList.remove('more-splash');
