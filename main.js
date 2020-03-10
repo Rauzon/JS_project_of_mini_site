@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function() { // for using script onl
 
     //timer 
 
-    let deadTime = '2020-03-09';
+    let deadTime = '2020-03-11';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -84,15 +84,15 @@ window.addEventListener('DOMContentLoaded', function() { // for using script onl
                 seconds.textContent = '00';
             }
             // added '0' before hours, minutes, seconds
-            if(t.hours < 10) {
+            if(t.hours < 10 && t.total >= 0) {
                 hours.textContent = '0' + t.hours;
             }
             
-            if(t.minutes < 10) {
+            if(t.minutes < 10 && t.total >= 0) {
                 minutes.textContent = '0' + t.minutes;
             }
             
-            if(t.seconds < 10) {
+            if(t.seconds < 10 && t.total >= 0) {
                 seconds.textContent = '0' + t.seconds;
             }
         }
@@ -152,3 +152,34 @@ function tabsOn(a) {
 }
 
 tabsOn(0);
+
+// added block to HTML file
+class Options {
+
+    constructor(height, width, bg, fontSize, textAlign) {
+
+        this.height = height;
+        this.width = width;
+        this.bg = bg;
+        this.fontSize = fontSize;
+        this.textAlign = textAlign;
+
+    }
+    divEns() {
+        
+        let divEl = document.createElement('div'),
+            myDiv = document.querySelector('.counter-title');
+        
+        divEl.textContent = "Golden dojo goldspotted killifish trench, bandfish South American Lungfish central mudminnow shovelnose sturgeon tonguefish, jewfish Bitterling snake mudhead bramble shark. Yellowfin surgeonfish sandbar shark pearl perch daggertooth pike conger turkeyfish, longfin dragonfish";
+
+        myDiv.insertAdjacentElement("beforebegin", divEl);
+
+        divEl.style.cssText = `height:${this.height}; width:${this.width}; background-color:${this.bg}; font-size: ${this.fontSize}; text-align: ${this.textAlign};`;
+
+    }
+}
+
+const invocationDiv = new Options('80px', 'max-width', '#3b3838', '18px', 'left');
+
+
+console.log(invocationDiv.divEns());
